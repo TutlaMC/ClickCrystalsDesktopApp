@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ClickCrystals Launcher</title>
+    <link rel="stylesheet" href="styles.css"></head>
+
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript">
+
+      
+     
+    </script>
+  </head>
+
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    
+
+
+    <nav class="navbar bg-body-territary sticky-top" >
+      <div class="container-fluid">
+        <a class="navbar-brand">ClickCrystals Desktop App</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">ClickCrystals Desktop App</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="javascript:change_page(1)">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                  CCS
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="javascript:change_page('ide')">IDE</a></li>
+                  <li><a class="dropdown-item" href="javascript:change_page('scripts')">Script Manager</a></li>
+                  <li><a class="dropdown-item" href="javascript:change_page('ide-settings')">IDE Settings</a></li>
+                  <li><a class="dropdown-item" href="javascript:change_page('script-forum')">Script Forum</a></li>
+                  <li><a class="dropdown-item" href="javascript:change_page('docs')">Docs</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Installation
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="javascript:change_page('install')">Install</a></li>
+                  <li><a class="dropdown-item" href="javascript:change_page('config')">Configuration Manager</a></li>
+                </ul>
+              </li>
+
+            </ul>
+
+          </div>
+
+        </div>
+
+        
+      </div>
+    </nav>
+    <div class="w-100 h-100 p-5">
+      <div class="card w-100" style=" height:500px;overflow-y: scroll;" data-bs-theme="dark">
+        <div class="card-header sticky-top">
+          Latest Log
+        </div>
+        <div class="card-body">
+          <p id="log" class="font-monospace"></p>
+        </div>
+        
+        
+      </div>
+    </div>
+
+
+    <button type="button" class="btn btn-primary" onclick="document.getElementById('folderFixModal').style.display='block'" id="launchFolderFixModal" style="display:none;">
+      gyatt v2
+    </button>
+    
+
+    <div class="modal" style="z-index:99999999999999999999999999;display: none;" id="folderFixModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" >ClickCrystals Folder Missing!</h1>
+          </div>
+          <div class="modal-body" >
+            <p>We couldn't find the ClickCrystals folder due to: <span id="folderfixError"></span></p>
+
+            <div class="row g-2 align-items-center">
+              <div class="col-auto">
+                <button onclick="eel.ccfolderSelection()">Select Folder</button>
+              </div>
+              <div class="col-auto">
+                <button id="autodetectCCFolder" onclick="eel.autodetect_ccfolder()">Auto Detect</button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            Please Select your ClickCrystals Folder, it is usually in your launcher folder.
+            <button type="button" class="btn btn-secondary" onclick="document.getElementById('folderFixModal').style.display='none'" id="closeFolderFixModal" style="display:none;" >Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      eel.expose(launch_folder_fix)
+      function launch_folder_fix(error){
+        error_part=document.getElementById("folderfixError")
+        error_part.innerText=error
+        document.getElementById("launchFolderFixModal").click()
+      }
+      eel.expose(close_folder_fix)
+      function close_folder_fix(){
+
+        document.getElementById("closeFolderFixModal").click()
+      }
+
+
+      eel.expose(log)
+      function log(text,stype){ 
+        if (stype == "error"){
+          document.getElementById("log").innerHTML += "<span>" + text + "</span><br>"
+        } else {
+          document.getElementById("log").innerHTML +="<span>" + text + "</span><br>"
+        }
+      }
+      function get_log(log){
+        document.getElementById("log").innerHTML = log;
+      }
+
+
+      function change_page(page){ 
+        if (page==1){
+          console.log("temp")
+        } else { 
+          console.log("Page not found")
+        }
+      }
+    </script>
+  </body>
+</html>

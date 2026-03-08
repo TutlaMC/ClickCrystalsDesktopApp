@@ -1,7 +1,10 @@
 # ClickCrystalsDesktopApp
 
 ## This project has been abandoned
+
 Yes, it hasn't been updated in **2 years** and I don't plan on doing so. It was originally made to providea  script editor and manage ClickCrystals but the need of it has been eliminated after updates to the official website that fulfill the necessity. An easy installer complicates the simplicity, hence we have discontinued it. __It has lost its purpose__
+
+
 ---
 
 ClickCrystals tool made for levelling up your ClickCrystal Experience!
